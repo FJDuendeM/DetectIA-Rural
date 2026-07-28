@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>DetectIA Rural</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div id="inicio">
+
+<h1>🌾 DetectIA Rural</h1>
+
+<p>
+¿Podés descubrir si las siguientes imágenes y videos
+son hechos por una cámara o generados con Inteligencia Artificial?
+</p>
+
+
+<button onclick="comenzar()">
+COMENZAR
+</button>
+
+</div>
+
+
+
+<div id="juego" style="display:none;">
+
+
+<h2 id="contador"></h2>
+
+
+<div id="contenido"></div>
+
+
+<br>
+
+
+<div id="botones">
+
+<button class="real" onclick="responder('REAL')">
+📷 REAL
+</button>
+
+
+<button class="ia" onclick="responder('IA')">
+🤖 IA
+</button>
+
+</div>
+
+<h2 id="mensaje"></h2>
+
+
+</div>
+
+
+
+<div id="final" style="display:none;">
+
+
+<h1>🎉 Juego terminado</h1>
+
+
+<h2 id="puntaje"></h2>
+
+
+<button onclick="location.reload()">
+Jugar otra vez
+</button>
+
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

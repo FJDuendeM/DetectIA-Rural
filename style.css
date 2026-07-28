@@ -1,0 +1,179 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background-image:url("imagenes/imagen1.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+}
+
+#inicio,
+#juego,
+#final{
+
+    width:950px;
+
+    background:rgba(0,0,0,.75);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0px 0px 25px black;
+
+}
+
+#juego,
+#final{
+
+    display:none;
+
+}
+
+h1{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+    color:#9cff57;
+
+}
+
+h2{
+
+    margin:20px;
+
+}
+
+p{
+
+    font-size:23px;
+
+    margin-bottom:30px;
+
+}
+
+button{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:18px 35px;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+.real{
+
+    background:#28a745;
+
+    color:white;
+
+}
+
+.real:hover{
+
+    background:#218838;
+
+}
+
+.ia{
+
+    background:#ff9800;
+
+    color:white;
+
+}
+
+.ia:hover{
+
+    background:#e68900;
+
+}
+
+#botones{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+}
+
+video{
+
+    margin-top:20px;
+
+    width:850px;
+
+    height:480px;
+
+    border-radius:15px;
+
+    border:4px solid white;
+
+    background:black;
+
+}
+
+#mensaje{
+
+    margin-top:25px;
+
+    font-size:30px;
+
+    color:#ffe600;
+
+}
+
+#contador{
+
+    color:#9cff57;
+
+}
+#contenido img{
+
+    width:850px;
+
+    height:480px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    border:4px solid white;
+
+}
