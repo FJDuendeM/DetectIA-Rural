@@ -13,7 +13,7 @@ const elementos = [
     {
         tipo: "video",
         archivo: "videos/video1.mp4",
-        respuesta: "IA"
+        respuesta: "REAL"
     },
 
     {
@@ -38,6 +38,24 @@ const elementos = [
         tipo: "video",
         archivo: "videos/video3.mp4",
         respuesta: "IA"
+    },
+
+    {
+        tipo: "imagen",
+        archivo: "imagenes/imagen5.jpg",
+        respuesta: "IA"
+    },
+
+    {
+        tipo: "imagen",
+        archivo: "imagenes/imagen4.jpg",
+        respuesta: "REAL"
+    },
+
+    {
+        tipo: "imagen",
+        archivo: "imagenes/imagen6.png",
+        respuesta: "REAL"
     }
 
 ];

@@ -7,10 +7,9 @@
 
 body{
 
-    background-image:url("imagenes/imagen1.jpg");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#4b0082);
+    background-size:400% 400%;
+    animation:fondo 15s ease infinite;
 
     height:100vh;
 
@@ -28,7 +27,9 @@ body{
 
     width:950px;
 
-    background:rgba(0,0,0,.75);
+    background:rgba(15,15,25,.72);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.15);
 
     padding:35px;
 
@@ -48,7 +49,7 @@ body{
 }
 
 h1{
-    font-size:56px;
+    font-size:58px;
 
     margin-bottom:20px;
 
@@ -174,5 +175,21 @@ video{
     border-radius:15px;
 
     border:4px solid white;
+
+}
+
+@keyframes fondo{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
 
 }
