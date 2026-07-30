@@ -1,4 +1,4 @@
-//
+```//
 // DETECTIA RURAL
 // =========================
 
@@ -60,6 +60,8 @@ const elementos = [
 
 ];
 
+let elementosJuego = [];
+
 let indice = 0;
 let puntos = 0;
 
@@ -78,12 +80,30 @@ const botones = document.getElementById("botones");
 const contador = document.getElementById("contador");
 const mensaje = document.getElementById("mensaje");
 
+function mezclarElementos(lista){
+
+    for(let i = lista.length - 1; i > 0; i--){
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [lista[i], lista[j]] = [lista[j], lista[i]];
+
+    }
+
+}
 
 // =========================
 // COMENZAR
 // =========================
 
 function comenzar(){
+
+    indice = 0;
+    puntos = 0;
+
+    elementosJuego = [...elementos];
+
+    mezclarElementos(elementosJuego);
 
     inicio.style.display = "none";
     juego.style.display = "block";
@@ -101,8 +121,8 @@ function cargarElemento(){
 
     mensaje.innerHTML = "";
 
-    contador.innerHTML =
-    `Elemento ${indice + 1} de ${elementos.length}`;
+contador.innerHTML =
+`Elemento ${indice + 1} de ${elementosJuego.length}`;
 
     contenido.innerHTML = "";
 
@@ -110,13 +130,13 @@ function cargarElemento(){
     // IMAGEN
     // ---------------------
 
-    if(elementos[indice].tipo == "imagen"){
+    if(elementosJuego[indice].tipo == "imagen"){
 
         botones.style.display = "block";
 
         contenido.innerHTML = `
         <img
-        src="${elementos[indice].archivo}"
+        src="${elementosJuego[indice].archivo}"
         width="900">
         `;
 
@@ -132,7 +152,7 @@ function cargarElemento(){
 
         contenido.innerHTML = `
         <video id="videoActual" width="900" controls autoplay>
-            <source src="${elementos[indice].archivo}" type="video/mp4">
+            <source src="${elementosJuego[indice].archivo}" type="video/mp4">
             Tu navegador no soporta videos.
         </video>
         `;
@@ -156,7 +176,7 @@ function cargarElemento(){
 
 function responder(opcion){
 
-    if(opcion == elementos[indice].respuesta){
+    if(opcion == elementosJuego[indice].respuesta){
 
         puntos++;
 
@@ -187,8 +207,7 @@ function siguiente(){
 
     indice++;
 
-    if(indice >= elementos.length){
-
+    if(indice >= elementosJuego.length){
         terminar();
 
     }
@@ -214,6 +233,6 @@ function terminar(){
 
     document.getElementById("puntaje").innerHTML =
 
-    `Obtuviste ${puntos} de ${elementos.length} puntos`;
+    `Obtuviste ${puntos} de ${elementosJuego.length} puntos`;
 
-}
+}```
