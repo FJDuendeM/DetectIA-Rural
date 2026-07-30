@@ -66,6 +66,33 @@ let indice = 0;
 let puntos = 0;
 
 // =========================
+// JUGADOR
+// =========================
+
+let nombreJugador = "";
+
+// =========================
+// RANKING
+// =========================
+
+const CLAVE_RANKING = "detectia_rural_ranking";
+
+function obtenerRanking() {
+
+    return JSON.parse(localStorage.getItem(CLAVE_RANKING)) || [];
+
+}
+
+function guardarRankingLocal(ranking) {
+
+    localStorage.setItem(
+        CLAVE_RANKING,
+        JSON.stringify(ranking)
+    );
+
+}
+
+// =========================
 // ELEMENTOS HTML
 // =========================
 
@@ -78,6 +105,10 @@ const botones = document.getElementById("botones");
 
 const contador = document.getElementById("contador");
 const mensaje = document.getElementById("mensaje");
+
+const inputNombre = document.getElementById("nombreJugador");
+const rankingDiv = document.getElementById("ranking");
+const puesto = document.getElementById("puesto");
 
 // =========================
 // MEZCLAR ELEMENTOS
