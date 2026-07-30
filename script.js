@@ -132,6 +132,20 @@ function mezclarElementos(lista){
 
 function comenzar(){
 
+    // Si venimos de una partida anterior
+    final.style.display = "none";
+
+    // Obtener nombre
+    nombreJugador = inputNombre.value.trim();
+
+    if(nombreJugador == ""){
+
+        alert("Por favor, ingresá tu nombre.");
+
+        return;
+
+    }
+
     indice = 0;
     puntos = 0;
 
@@ -261,6 +275,41 @@ function terminar(){
     final.style.display = "block";
 
     document.getElementById("puntaje").innerHTML =
-    `Obtuviste ${puntos} de ${elementosJuego.length} puntos`;
+    `🎯 ${nombreJugador}, obtuviste ${puntos} de ${elementosJuego.length} puntos`;
+
+    let ranking = obtenerRanking();
+
+    const nombreBuscado = nombreJugador.toLowerCase();
+
+    const jugador = ranking.find(j =>
+        j.nombre.toLowerCase() == nombreBuscado
+    );
+
+    if(jugador){
+
+        if(puntos > jugador.puntaje){
+
+            jugador.puntaje = puntos;
+            jugador.fecha = new Date().toLocaleString();
+
+        }
+
+    }
+
+    else{
+
+        ranking.push({
+
+            nombre: nombreJugador,
+            puntaje: puntos,
+            fecha: new Date().toLocaleString()
+
+        });
+
+    }
+
+    ranking.sort((a,b)=>b.puntaje-a.puntaje);
+
+    guardarRankingLocal(ranking);
 
 }
