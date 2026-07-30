@@ -1,4 +1,4 @@
-```//
+//
 // DETECTIA RURAL
 // =========================
 
@@ -65,7 +65,6 @@ let elementosJuego = [];
 let indice = 0;
 let puntos = 0;
 
-
 // =========================
 // ELEMENTOS HTML
 // =========================
@@ -79,6 +78,10 @@ const botones = document.getElementById("botones");
 
 const contador = document.getElementById("contador");
 const mensaje = document.getElementById("mensaje");
+
+// =========================
+// MEZCLAR ELEMENTOS
+// =========================
 
 function mezclarElementos(lista){
 
@@ -112,7 +115,6 @@ function comenzar(){
 
 }
 
-
 // =========================
 // CARGAR IMAGEN O VIDEO
 // =========================
@@ -121,8 +123,8 @@ function cargarElemento(){
 
     mensaje.innerHTML = "";
 
-contador.innerHTML =
-`Elemento ${indice + 1} de ${elementosJuego.length}`;
+    contador.innerHTML =
+    `Elemento ${indice + 1} de ${elementosJuego.length}`;
 
     contenido.innerHTML = "";
 
@@ -169,7 +171,6 @@ contador.innerHTML =
 
 }
 
-
 // =========================
 // RESPUESTA
 // =========================
@@ -181,7 +182,6 @@ function responder(opcion){
         puntos++;
 
         mensaje.innerHTML = "✅ ¡Correcto!";
-
         mensaje.style.color = "lightgreen";
 
     }
@@ -189,7 +189,6 @@ function responder(opcion){
     else{
 
         mensaje.innerHTML = "❌ Incorrecto";
-
         mensaje.style.color = "red";
 
     }
@@ -197,7 +196,6 @@ function responder(opcion){
     setTimeout(siguiente,1500);
 
 }
-
 
 // =========================
 // SIGUIENTE
@@ -208,6 +206,7 @@ function siguiente(){
     indice++;
 
     if(indice >= elementosJuego.length){
+
         terminar();
 
     }
@@ -220,7 +219,6 @@ function siguiente(){
 
 }
 
-
 // =========================
 // FINAL
 // =========================
@@ -232,7 +230,6 @@ function terminar(){
     final.style.display = "block";
 
     document.getElementById("puntaje").innerHTML =
-
     `Obtuviste ${puntos} de ${elementosJuego.length} puntos`;
 
-}```
+}
