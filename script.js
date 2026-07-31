@@ -7,7 +7,7 @@ const elementos = [
     {
         tipo: "imagen",
         archivo: "imagenes/imagen1.jpg",
-        respuesta: "REAL"
+        respuesta: "IA"
     },
 
     {
@@ -43,7 +43,7 @@ const elementos = [
     {
         tipo: "imagen",
         archivo: "imagenes/imagen5.jpg",
-        respuesta: "IA"
+        respuesta: "REAL"
     },
 
     {
@@ -55,7 +55,7 @@ const elementos = [
     {
         tipo: "imagen",
         archivo: "imagenes/imagen6.png",
-        respuesta: "REAL"
+        respuesta: "IA"
     }
 
 ];

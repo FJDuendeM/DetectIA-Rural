@@ -334,3 +334,51 @@ hr{
     border:1px solid rgba(255,255,255,.15);
 
 }
+
+/* ========================= */
+/* CELULAR */
+/* ========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:32px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    input[type="text"]{
+
+        width:100%;
+        font-size:18px;
+
+    }
+
+    #botones{
+
+        flex-direction:column;
+        gap:12px;
+
+    }
+
+    button{
+
+        width:100%;
+
+    }
+
+    #contenido img,
+    video{
+
+        width:100%;
+        height:auto;
+
+    }
+
+}
