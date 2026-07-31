@@ -16,11 +16,13 @@ body{
 
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
 
     color:white;
 
-    padding:20px;
+    padding:30px 15px;
+
+    overflow-y:auto;
 
 }
 
@@ -28,19 +30,24 @@ body{
 #juego,
 #final{
 
-    width:950px;
+    width:920px;
+    max-width:95%;
 
-    background:rgba(15,15,25,.72);
+    min-height:200px;
+
+    background:rgba(15,15,25,.75);
+
     backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.15);
 
-    padding:35px;
+    border:1px solid rgba(255,255,255,.12);
+
+    padding:25px;
 
     border-radius:20px;
 
     text-align:center;
 
-    box-shadow:0px 0px 25px black;
+    box-shadow:0 0 30px rgba(0,0,0,.6);
 
 }
 
@@ -51,11 +58,20 @@ body{
 
 }
 
+#final{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
 h1{
 
-    font-size:58px;
+    font-size:46px;
 
-    margin-bottom:20px;
+    margin-bottom:10px;
 
     color:#9cff57;
 
@@ -63,22 +79,27 @@ h1{
 
 h2{
 
-    margin:20px;
+    margin:10px 0;
+
+    font-size:26px;
 
 }
 
 h3{
 
-    margin-top:10px;
-    color:#ffe600;
+    margin-top:6px;
+
+    font-size:21px;
+
+    color:#ffd54f;
 
 }
 
 p{
 
-    font-size:23px;
+    font-size:18px;
 
-    margin-bottom:30px;
+    margin-bottom:10px;
 
 }
 
@@ -90,9 +111,9 @@ input[type="text"]{
 
     width:320px;
 
-    padding:15px;
+    padding:14px;
 
-    font-size:22px;
+    font-size:21px;
 
     border:none;
 
@@ -112,23 +133,25 @@ button{
 
     border:none;
 
-    border-radius:15px;
+    border-radius:12px;
 
-    padding:18px 35px;
+    padding:12px 22px;
 
-    font-size:22px;
+    font-size:18px;
+
+    font-weight:bold;
 
     cursor:pointer;
 
-    transition:.3s;
+    transition:.25s;
 
-    margin:8px;
+    margin:5px;
 
 }
 
 button:hover{
 
-    transform:scale(1.05);
+    transform:translateY(-2px);
 
 }
 
@@ -162,13 +185,13 @@ button:hover{
 
 #botones{
 
-    margin-top:25px;
+    margin-top:20px;
 
     display:flex;
 
     justify-content:center;
 
-    gap:40px;
+    gap:25px;
 
 }
 
@@ -178,11 +201,11 @@ button:hover{
 
 video{
 
-    margin-top:20px;
+    margin-top:15px;
 
-    width:850px;
+    width:800px;
 
-    height:480px;
+    height:420px;
 
     border-radius:15px;
 
@@ -194,9 +217,9 @@ video{
 
 #contenido img{
 
-    width:850px;
+    width:800px;
 
-    height:480px;
+    height:420px;
 
     object-fit:cover;
 
@@ -210,9 +233,9 @@ video{
 
 #mensaje{
 
-    margin-top:25px;
+    margin-top:18px;
 
-    font-size:30px;
+    font-size:28px;
 
     color:#ffe600;
 
@@ -225,71 +248,89 @@ video{
 }
 
 /* ========================= */
+/* RESULTADO */
+/* ========================= */
+
+#puntaje{
+
+    font-size:22px;
+
+    margin-top:8px;
+
+    color:white;
+
+}
+
+#puesto{
+
+    color:#ffd54f;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+/* ========================= */
 /* RANKING */
 /* ========================= */
 
 #ranking{
 
-    margin-top:20px;
+    min-height:120px;
 
-    width:100%;
+    max-height:350px;
 
-    max-height:320px;
+    margin-top:10px;
 
     overflow-y:auto;
 
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.05);
 
-    border-radius:12px;
+    border-radius:15px;
 
-    padding:15px;
+    padding:10px;
+
+    border:1px solid rgba(255,255,255,.08);
 
     text-align:left;
 
 }
 
-.filaRanking{
+#ranking p{
 
-    display:flex;
+    background:rgba(255,255,255,.07);
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:10px;
-
-    margin-bottom:8px;
+    padding:10px 14px;
 
     border-radius:10px;
 
-    background:rgba(255,255,255,.05);
+    margin-bottom:8px;
 
-    font-size:22px;
+    font-size:17px;
 
-}
-
-.oro{
-
-    background:rgba(255,215,0,.25);
+    transition:.2s;
 
 }
 
-.plata{
+#ranking p:hover{
 
-    background:rgba(192,192,192,.25);
+    background:rgba(255,255,255,.14);
 
 }
 
-.bronce{
+#ranking b{
 
-    background:rgba(205,127,50,.25);
+    color:#fff;
 
 }
 
 hr{
 
-    margin:25px 0;
+    margin:15px 0;
 
-    border:1px solid rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.15);
 
 }

@@ -65,6 +65,10 @@ let elementosJuego = [];
 let indice = 0;
 let puntos = 0;
 
+let tiempoInicio = 0;
+let tiempoFinal = 0;
+let tiempoTotal = 0;
+
 // =========================
 // JUGADOR
 // =========================
@@ -148,6 +152,8 @@ function comenzar(){
 
     indice = 0;
     puntos = 0;
+
+    tiempoInicio = Date.now();
 
     elementosJuego = [...elementos];
 
@@ -272,10 +278,18 @@ function terminar(){
 
     juego.style.display = "none";
 
-    final.style.display = "block";
+    final.style.display = "flex";
+
+    tiempoFinal = Date.now();
+
+    tiempoTotal = Math.round((tiempoFinal - tiempoInicio) / 1000);
 
     document.getElementById("puntaje").innerHTML =
-    `🎯 ${nombreJugador}, obtuviste ${puntos} de ${elementosJuego.length} puntos`;
+    `
+    🎯 ${nombreJugador}, obtuviste ${puntos} de ${elementosJuego.length} puntos
+    <br>
+    ⏱ Tiempo: ${tiempoTotal} segundos
+    `;
 
     let ranking = obtenerRanking();
 
@@ -285,11 +299,13 @@ function terminar(){
         j.nombre.toLowerCase() == nombreBuscado
     );
 
+
     if(jugador){
 
         if(puntos > jugador.puntaje){
 
             jugador.puntaje = puntos;
+            jugador.tiempo = tiempoTotal;
             jugador.fecha = new Date().toLocaleString();
 
         }
@@ -300,16 +316,230 @@ function terminar(){
 
         ranking.push({
 
-            nombre: nombreJugador,
-            puntaje: puntos,
-            fecha: new Date().toLocaleString()
+    nombre: nombreJugador,
+    puntaje: puntos,
+    tiempo: tiempoTotal,
+    fecha: new Date().toLocaleString()
 
-        });
+});
 
     }
 
-    ranking.sort((a,b)=>b.puntaje-a.puntaje);
+
+    ranking.sort((a, b) => {
+
+    if (b.puntaje !== a.puntaje) {
+        return b.puntaje - a.puntaje;
+    }
+
+    return a.tiempo - b.tiempo;
+
+});
+
 
     guardarRankingLocal(ranking);
+
+    mostrarRanking();
+
+
+    // Mostrar puesto del jugador
+
+    let posicion = ranking.findIndex(j =>
+        j.nombre.toLowerCase() == nombreBuscado
+    );
+
+
+    document.getElementById("puesto").innerHTML =
+    `🏆 Quedaste en el puesto #${posicion + 1} del ranking`;
+
+}
+
+
+// =========================
+// NUEVO JUGADOR
+// =========================
+
+function nuevoJugador(){
+
+    final.style.display = "none";
+
+    inicio.style.display = "block";
+
+    document.getElementById("nombre").value = "";
+
+}
+
+// =========================
+// MOSTRAR RANKING
+// =========================
+
+function mostrarRanking(){
+
+    let ranking = obtenerRanking();
+
+    let lista = document.getElementById("ranking");
+
+    lista.innerHTML = "";
+
+
+    ranking.slice(0,10).forEach((jugador,index)=>{
+
+        let medalla = "";
+        let color = "";
+
+        if(index == 0){
+            medalla = "🥇";
+            color = "#ffd700";
+        }
+        else if(index == 1){
+            medalla = "🥈";
+            color = "#c0c0c0";
+        }
+        else if(index == 2){
+            medalla = "🥉";
+            color = "#cd7f32";
+        }
+        else{
+            medalla = `${index + 1}️⃣`;
+            color = "#9cff57";
+        }
+
+
+        lista.innerHTML += `
+
+        <div style="
+            background:rgba(255,255,255,.07);
+            border-left:6px solid ${color};
+            border-radius:12px;
+            padding:12px 15px;
+            margin-bottom:10px;
+        ">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                font-size:20px;
+                font-weight:bold;
+            ">
+
+                <span>${medalla} ${jugador.nombre}</span>
+
+                <span style="color:#ffe600;">
+                    ⭐ ${jugador.puntaje}
+                </span>
+
+            </div>
+
+            <div style="
+            margin-top:6px;
+            color:#cfcfcf;
+            font-size:15px;
+            ">
+            ⏱ ${jugador.tiempo} s
+            <br>
+            📅 ${jugador.fecha}
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+mostrarRanking();
+
+// =========================
+// REINICIAR RANKING
+// =========================
+
+function reiniciarRanking(){
+
+    if(!confirm("¿Seguro que querés borrar todo el ranking?")){
+        return;
+    }
+
+    localStorage.removeItem(CLAVE_RANKING);
+
+    mostrarRanking();
+
+    alert("✅ Ranking reiniciado.");
+
+}
+
+// =========================
+// EXPORTAR RANKING
+// =========================
+
+function exportarRanking(){
+
+    const ranking = obtenerRanking();
+
+    if(ranking.length === 0){
+
+        alert("No hay ranking para exportar.");
+
+        return;
+
+    }
+
+    const datos = JSON.stringify(ranking, null, 4);
+
+    const blob = new Blob([datos], { type: "application/json" });
+
+    const url = URL.createObjectURL(blob);
+
+    const enlace = document.createElement("a");
+
+    enlace.href = url;
+    enlace.download = "ranking_detectia_rural.json";
+
+    enlace.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+// =========================
+// IMPORTAR RANKING
+// =========================
+
+document.getElementById("archivoRanking").addEventListener("change", importarRanking);
+
+function importarRanking(event){
+
+    const archivo = event.target.files[0];
+
+    if(!archivo){
+        return;
+    }
+
+    const lector = new FileReader();
+
+    lector.onload = function(e){
+
+        try{
+
+            const ranking = JSON.parse(e.target.result);
+
+            guardarRankingLocal(ranking);
+
+            mostrarRanking();
+
+            alert("✅ Ranking importado correctamente.");
+
+        }
+
+        catch{
+
+            alert("❌ El archivo no es válido.");
+
+        }
+
+    };
+
+    lector.readAsText(archivo);
 
 }
